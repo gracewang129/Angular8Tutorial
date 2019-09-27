@@ -8,7 +8,6 @@ import { ProductsService } from '../products.service';
   styleUrls: ['./product-add.component.css']
 })
 export class ProductAddComponent implements OnInit {
-  createEdit = true;
 
   angForm: FormGroup;
   constructor(private fb: FormBuilder, private ps: ProductsService) {

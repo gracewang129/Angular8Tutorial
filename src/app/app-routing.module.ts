@@ -6,6 +6,10 @@ import { ProductGetComponent } from './product-get/product-get.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: ProductGetComponent
+  },
+  {
     path: 'product/create',
     component: ProductAddComponent
   },
