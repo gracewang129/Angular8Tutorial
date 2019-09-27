@@ -18,10 +18,12 @@ export class ProductEditComponent implements OnInit {
  }
 
   createForm() {
-    this.angForm = this.fb.group({
-      ProductName: ['', Validators.required ],
-      ProductDescription: ['', Validators.required ],
-      ProductPrice: ['', Validators.required ]
+      this.angForm = this.fb.group({
+        CustomerName: ['', Validators.required ],
+        PersonOfContact: ['', Validators.required ],
+        PhoneNumber: ['number', Validators.required ],
+        Location: ['', Validators.required ],
+        NumberOfEmployees: ['number', Validators.required ]
     });
   }
 
@@ -33,9 +35,9 @@ export class ProductEditComponent implements OnInit {
     });
   }
 
-  updateProduct(ProductName, ProductDescription, ProductPrice, id) {
+  updateProduct(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees, id) {
     this.route.params.subscribe(params => {
-      this.ps.updateProduct(ProductName, ProductDescription, ProductPrice, params.id);
+      this.ps.updateProduct(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees, params.id);
       this.router.navigate(['products']);
     });
   }

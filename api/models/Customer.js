@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Define collection and schema for Product
-let Product = new Schema({
+let Customer = new Schema({
   CustomerName: {
     type: String
   },
@@ -21,7 +21,7 @@ let Product = new Schema({
     type: Number
   }
 },{
-    collection: 'Product'
+    collection: 'Customer'
 });
 
-module.exports = mongoose.model('Product', Product);
+module.exports = mongoose.model('Customer', Customer);

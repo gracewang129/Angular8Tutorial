@@ -10,12 +10,14 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  addProduct(ProductName, ProductDescription, ProductPrice) {
-    console.log(ProductName, ProductDescription, ProductPrice);
+  addProduct(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees) {
+    console.log(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees);
     const obj = {
-      ProductName,
-      ProductDescription,
-      ProductPrice
+      CustomerName,
+      PersonOfContact,
+      PhoneNumber,
+      Location,
+      NumberOfEmployees
     };
     this.http.post(`${this.uri}/add`, obj)
         .subscribe(res => console.log('Done'));
@@ -33,11 +35,13 @@ export class ProductsService {
             .get(`${this.uri}/edit/${id}`);
   }
 
-  updateProduct(ProductName, ProductDescription, ProductPrice, id) {
+  updateProduct(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees, id) {
     const obj = {
-      ProductName,
-      ProductDescription,
-      ProductPrice
+      CustomerName,
+      PersonOfContact,
+      PhoneNumber,
+      Location,
+      NumberOfEmployees
     };
     this
       .http

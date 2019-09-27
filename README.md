@@ -1,4 +1,13 @@
-# Angular8tutorial
+This project is based on # Angular8tutorial from  KrunalLathiya/Angular8Tutorial
+
+To Run the project, first type
+
+npm install --save-dev @angular-devkit/build-angular
+
+in the terminal.
+Then, run mongodb by typing mongod in the  mongodb/bin  folder.
+Then type  ng serve  in the root folder, and type  node server in the api folder.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.1.
 

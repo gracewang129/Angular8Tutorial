@@ -8,6 +8,7 @@ import { ProductsService } from '../products.service';
   styleUrls: ['./product-add.component.css']
 })
 export class ProductAddComponent implements OnInit {
+  createEdit = true;
 
   angForm: FormGroup;
   constructor(private fb: FormBuilder, private ps: ProductsService) {
@@ -16,14 +17,17 @@ export class ProductAddComponent implements OnInit {
 
   createForm() {
     this.angForm = this.fb.group({
-      ProductName: ['', Validators.required ],
-      ProductDescription: ['', Validators.required ],
-      ProductPrice: ['', Validators.required ]
+      CustomerName: ['', Validators.required ],
+      PersonOfContact: ['', Validators.required ],
+      PhoneNumber: ['number', Validators.required ],
+      Location: ['', Validators.required ],
+      NumberOfEmployees: ['number', Validators.required ]
     });
   }
 
-  addProduct(ProductName, ProductDescription, ProductPrice) {
-    this.ps.addProduct(ProductName, ProductDescription, ProductPrice);
+  addProduct(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees) {
+    this.ps.addProduct(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees);
+
   }
 
   ngOnInit() {

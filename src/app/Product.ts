@@ -1,5 +1,7 @@
 export default class Product {
-  ProductName: string;
-  ProductDescription: string;
-  ProductPrice: number;
+  CustomerName: string;
+  PersonOfContact: string;
+  PhoneNumber: number;
+  Location: string;
+  NumberOfEmployees: number;
 }

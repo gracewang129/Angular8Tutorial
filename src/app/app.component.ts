@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 import { NavigationCancel,
         Event,
@@ -6,6 +6,8 @@ import { NavigationCancel,
         NavigationError,
         NavigationStart,
         Router } from '@angular/router';
+import Product from './Product';
+import { ProductsService } from './products.service';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +16,17 @@ import { NavigationCancel,
 })
 export class AppComponent {
   title = 'angular8tutorial';
-  constructor(private loadingBar: SlimLoadingBarService, private router: Router) {
+  products: Product[];
+  constructor(private loadingBar: SlimLoadingBarService, private router: Router, private ps: ProductsService) {
     this.router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
+    });
+  }
+  ngOnInit() {
+    this.ps
+      .getProducts()
+      .subscribe((data: Product[]) => {
+        this.products = data;
     });
   }
   private navigationInterceptor(event: Event): void {
@@ -33,4 +43,13 @@ export class AppComponent {
       this.loadingBar.stop();
     }
   }
+
+
+
+  deleteProduct(id) {
+    this.ps.deleteProduct(id).subscribe(res => {
+      this.products.splice(id, 1);
+    });
+  }
+
 }
