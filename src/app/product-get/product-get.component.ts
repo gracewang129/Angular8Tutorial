@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Product from '../Product';
 import { ProductsService } from '../products.service';
+import { ApixuService } from "../apixu.service";
 
 @Component({
   selector: 'app-product-get',
@@ -10,7 +11,7 @@ import { ProductsService } from '../products.service';
 export class ProductGetComponent implements OnInit {
 
   products: Product[];
-  constructor(private ps: ProductsService) { }
+  constructor(private ps: ProductsService, private apixuService: ApixuService) { }
 
   ngOnInit() {
     this.ps
@@ -18,6 +19,10 @@ export class ProductGetComponent implements OnInit {
       .subscribe((data: Product[]) => {
         this.products = data;
     });
+    this.apixuService
+      .getWeather('London,us')
+      .subscribe(data => console.log(data));
+
   }
 
   // product-get.component.ts
