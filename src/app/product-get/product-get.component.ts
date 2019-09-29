@@ -31,14 +31,33 @@ export class ProductGetComponent implements OnInit {
 
   public isLoaded = false;
   ngOnInit() {
-    this.ps
-      .getProducts()
-      .subscribe((data: Product[]) => {
-        this.products = data;
-        this.products.sort((a,b) => b.NumberOfEmployees - a.NumberOfEmployees);
+    this.getCustomers().then(
+      () => {
+        console.log("Task Complete! = " + this.products);
+        this.setUpCustomers();
+      },
+      () => console.log("Task Errored!"),
+    );
+  }
+  getCustomers() {
+  let promise = new Promise((resolve, reject) => {
+    this.ps.getProducts()
+      .toPromise()
+      .then(
+        (data: Product[]) => { // Success
+         this.products = data;
+         this.products.sort((a,b) => b.NumberOfEmployees - a.NumberOfEmployees);
 
-        //console.log('this.product = ' + this.products);
-        for (let i = 0; i < this.products.length; i++){
+         console.log('this.product = ' + this.products);
+          resolve();
+        }
+      );
+  });
+  return promise;
+}
+//initialize the weather component into the customer list.
+  setUpCustomers() {
+    for (let i = 0; i < this.products.length; i++){
           //default the day of rain to be -1, meaning it's not going to rain.
           this.products[i].DayofRain = -1;
           this.apixuService
@@ -70,11 +89,7 @@ export class ProductGetComponent implements OnInit {
         }
         console.log(this.barChartData);
         this.isLoaded = true;
-    });
-
-
   }
-
   // product-get.component.ts
 
   deleteProduct(id) {
