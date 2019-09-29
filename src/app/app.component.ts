@@ -46,10 +46,9 @@ export class AppComponent {
 
 
 
-  deleteProduct(id) {
-    this.ps.deleteProduct(id).subscribe(res => {
-      this.products.splice(id, 1);
-    });
+  showTopFour() {
+    const topfour = true;
+    console.log("showtopfour");
   }
 
 }

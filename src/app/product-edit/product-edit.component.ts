@@ -38,7 +38,7 @@ export class ProductEditComponent implements OnInit {
   updateProduct(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees, id) {
     this.route.params.subscribe(params => {
       this.ps.updateProduct(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees, params.id);
-      this.router.navigate(['products']);
+      this.router.navigate(['']);
     });
   }
 }

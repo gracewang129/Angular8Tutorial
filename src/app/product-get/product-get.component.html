@@ -1,3 +1,6 @@
+<div class="container">
+
+<h2> List of Raining Customers </h2>
 <table class="table table-hover">
   <thead>
   <tr>
@@ -18,9 +21,21 @@
           <td>{{ product.PhoneNumber }}</td>
           <td>{{ product.Location }}</td>
           <td>{{ product.NumberOfEmployees }}</td>
-          <td>{{product.DayofRain}}</td>
+          <td>{{ product.DayofRain}}</td>
           <td><a [routerLink]="['/edit', product._id]" class="btn btn-primary">Edit</a></td>
           <td><a (click) = "deleteProduct(product._id)" class="btn btn-danger">Delete</a>
       </tr>
   </tbody>
 </table>
+<h2> Top Four Customers</h2>
+<div style="display: block" *ngIf="isLoaded">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+    </canvas>
+  </div>
+
+</div>
