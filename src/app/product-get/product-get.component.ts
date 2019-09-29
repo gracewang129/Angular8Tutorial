@@ -35,8 +35,8 @@ export class ProductGetComponent implements OnInit {
               console.log(day.weather[0].main);
               if (day.weather[0].main == 'Rain'){
                 //console.log('rain');
-                this.products[i].DayofRain = j;
-
+                this.products[i].DayofRain = j + 1;
+                break; //the first date of rain should bebe recorded
               }
             }
           });
