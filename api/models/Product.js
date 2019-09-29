@@ -15,7 +15,7 @@ let Product = new Schema({
     type: Number
   },
   Location: {
-    type: Number
+    type: String
   },
   NumberOfEmployees: {
     type: Number

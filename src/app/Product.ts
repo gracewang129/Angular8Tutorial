@@ -4,4 +4,5 @@ export default class Product {
   PhoneNumber: number;
   Location: string;
   NumberOfEmployees: number;
+  DayofRain: number;
 }

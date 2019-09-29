@@ -6,6 +6,7 @@
       <td>Phone Number</td>
       <td>Location</td>
       <td>Number Of Employees</td>
+      <td>Day of Rain</td>
       <td colspan="2">Actions</td>
   </tr>
   </thead>
@@ -17,6 +18,7 @@
           <td>{{ product.PhoneNumber }}</td>
           <td>{{ product.Location }}</td>
           <td>{{ product.NumberOfEmployees }}</td>
+          <td>{{product.DayofRain}}</td>
           <td><a [routerLink]="['/edit', product._id]" class="btn btn-primary">Edit</a></td>
           <td><a (click) = "deleteProduct(product._id)" class="btn btn-danger">Delete</a>
       </tr>
