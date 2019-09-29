@@ -14,15 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CustomersService } from './customers.service';
 import { ApixuService } from "./apixu.service";
-import { CustomerTopfourComponent } from './customer-topfour/customer-topfour.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerAddComponent,
     CustomerGetComponent,
-    CustomerEditComponent,
-    CustomerTopfourComponent
+    CustomerEditComponent
   ],
   imports: [
     BrowserModule,

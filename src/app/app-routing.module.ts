@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { CustomerAddComponent } from './customer-add/customer-add.component';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { CustomerGetComponent } from './customer-get/customer-get.component';
-import { CustomerTopfourComponent } from './customer-topfour/customer-topfour.component';
 const routes: Routes = [
   {
     path: '',
@@ -16,10 +15,6 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: CustomerEditComponent
-  },
-  {
-    path: 'top-four-customers',
-    component: CustomerTopfourComponent
   }
 ];
 
