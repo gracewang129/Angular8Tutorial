@@ -6,8 +6,8 @@ import { NavigationCancel,
         NavigationError,
         NavigationStart,
         Router } from '@angular/router';
-import Product from './Product';
-import { ProductsService } from './products.service';
+import Customer from './Customer';
+import { CustomersService } from './customers.service';
 
 @Component({
   selector: 'app-root',
@@ -16,17 +16,17 @@ import { ProductsService } from './products.service';
 })
 export class AppComponent {
   title = 'angular8tutorial';
-  products: Product[];
-  constructor(private loadingBar: SlimLoadingBarService, private router: Router, private ps: ProductsService) {
+  customers: Customer[];
+  constructor(private loadingBar: SlimLoadingBarService, private router: Router, private ps: CustomersService) {
     this.router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });
   }
   ngOnInit() {
     this.ps
-      .getProducts()
-      .subscribe((data: Product[]) => {
-        this.products = data;
+      .getCustomers()
+      .subscribe((data: Customer[]) => {
+        this.customers = data;
     });
   }
   private navigationInterceptor(event: Event): void {

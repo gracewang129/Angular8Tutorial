@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductsService } from '../products.service';
+import { CustomersService } from '../customers.service';
 
 @Component({
-  selector: 'app-product-edit',
-  templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.css']
+  selector: 'app-customer-edit',
+  templateUrl: './customer-edit.component.html',
+  styleUrls: ['./customer-edit.component.css']
 })
-export class ProductEditComponent implements OnInit {
+export class CustomerEditComponent implements OnInit {
 
   angForm: FormGroup;
-  product: any = {};
+  customer: any = {};
 
-  constructor(private route: ActivatedRoute, private router: Router, private ps: ProductsService, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private router: Router, private ps: CustomersService, private fb: FormBuilder) {
       this.createForm();
  }
 
@@ -29,15 +29,15 @@ export class ProductEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-        this.ps.editProduct(params.id).subscribe(res => {
-          this.product = res;
+        this.ps.editCustomer(params.id).subscribe(res => {
+          this.customer = res;
       });
     });
   }
 
-  updateProduct(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees, id) {
+  updateCustomer(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees, id) {
     this.route.params.subscribe(params => {
-      this.ps.updateProduct(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees, params.id);
+      this.ps.updateCustomer(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees, params.id);
       this.router.navigate(['']);
     });
   }

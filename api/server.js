@@ -5,7 +5,7 @@ const express = require('express'),
     mongoose = require('mongoose'),
     config = require('./DB');
 
-   const productRoute = require('./routes/product.route');
+   const customerRoute = require('./routes/customer.route');
     mongoose.Promise = global.Promise;
     mongoose.connect(config.DB, { useNewUrlParser: true }).then(
       () => {console.log('Database is connected') },
@@ -15,7 +15,7 @@ const express = require('express'),
     const app = express();
     app.use(bodyParser.json());
     app.use(cors());
-    app.use('/products', productRoute);
+    app.use('/customers', customerRoute);
     const port = process.env.PORT || 4000;
 
     const server = app.listen(port, function(){

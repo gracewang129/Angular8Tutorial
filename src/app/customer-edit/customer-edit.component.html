@@ -3,7 +3,7 @@
     <form [formGroup]="angForm" novalidate>
       <div class="form-group">
         <label class="col-md-4">Customer Name</label>
-        <input type="text" class="form-control"
+        <input type="text" class="form-control"placeholder="{{customer.CustomerName}}"
           formControlName="CustomerName"
           #CustomerName />
       </div>
@@ -14,7 +14,7 @@
       </div>
       <div class="form-group">
         <label class="col-md-4">Person of Contact </label>
-        <input type="text" class="form-control"
+        <input type="text" class="form-control" placeholder="{{customer.PersonOfContact}}"
           formControlName="PersonOfContact"
           #PersonOfContact
         />
@@ -26,7 +26,7 @@
       </div>
       <div class="form-group">
         <label class="col-md-4">Phone Number</label>
-        <input type="number" class="form-control"
+        <input type="number" class="form-control" placeholder="{{customer.PhoneNumber}}"
           formControlName="PhoneNumber"
           #PhoneNumber
         />
@@ -38,8 +38,8 @@
       </div>
       <div class="form-group">
         <label class="col-md-4">Location</label>
-        <input type="text" class="form-control"
-          formControlName="Location" placeholder="must be in the format of Cityname,Country Code"
+        <input type="text" class="form-control" placeholder="{{customer.Location}}"
+          formControlName="Location"
           #Location
         />
       </div>
@@ -51,7 +51,7 @@
 
       <div class="form-group">
         <label class="col-md-4">Number of Employees</label>
-        <input type="number" class="form-control"
+        <input type="number" class="form-control" placeholder="{{customer.NumberOfEmployees}}"
           formControlName="NumberOfEmployees"
           #NumberOfEmployees
         />
@@ -62,9 +62,9 @@
         </div>
       </div>
       <div class="form-group">
-        <button (click) = "addProduct(CustomerName.value, PersonOfContact.value, PhoneNumber.value, Location.value, NumberOfEmployees.value)" type="submit" class="btn btn-primary"
-        [disabled]="angForm.pristine || angForm.invalid" >
-          Create Customer
+        <button (click) = "updateCustomer(CustomerName.value, PersonOfContact.value, PhoneNumber.value, Location.value, NumberOfEmployees.value)" type="submit" class="btn btn-primary"
+        [disabled]="angForm.invalid" >
+          Save Changes
         </button>
       </div>
     </form>

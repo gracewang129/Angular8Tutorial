@@ -1,4 +1,4 @@
-export default class Product {
+export default class Customer {
   CustomerName: string;
   PersonOfContact: string;
   PhoneNumber: number;

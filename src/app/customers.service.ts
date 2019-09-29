@@ -4,13 +4,13 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class CustomersService {
 
-  uri = 'http://localhost:4000/products';
+  uri = 'http://localhost:4000/customers';
 
   constructor(private http: HttpClient) { }
 
-  addProduct(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees) {
+  addCustomer(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees) {
     console.log(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees);
     const obj = {
       CustomerName,
@@ -23,19 +23,19 @@ export class ProductsService {
         .subscribe(res => console.log('Done'));
   }
 
-  getProducts() {
+  getCustomers() {
     return this
            .http
            .get(`${this.uri}`);
   }
 
-  editProduct(id) {
+  editCustomer(id) {
     return this
             .http
             .get(`${this.uri}/edit/${id}`);
   }
 
-  updateProduct(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees, id) {
+  updateCustomer(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees, id) {
     const obj = {
       CustomerName,
       PersonOfContact,
@@ -49,7 +49,7 @@ export class ProductsService {
       .subscribe(res => console.log('Update Complete'));
   }
 
-  deleteProduct(id) {
+  deleteCustomer(id) {
     return this
               .http
               .get(`${this.uri}/delete/${id}`);

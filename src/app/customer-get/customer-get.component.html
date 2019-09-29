@@ -15,15 +15,15 @@
   </thead>
 
   <tbody>
-      <tr *ngFor="let product of products">
-          <td>{{ product.CustomerName }}</td>
-          <td>{{ product.PersonOfContact }}</td>
-          <td>{{ product.PhoneNumber }}</td>
-          <td>{{ product.Location }}</td>
-          <td>{{ product.NumberOfEmployees }}</td>
-          <td>{{ product.DayofRain}}</td>
-          <td><a [routerLink]="['/edit', product._id]" class="btn btn-primary">Edit</a></td>
-          <td><a (click) = "deleteProduct(product._id)" class="btn btn-danger">Delete</a>
+      <tr *ngFor="let customer of customers">
+          <td>{{ customer.CustomerName }}</td>
+          <td>{{ customer.PersonOfContact }}</td>
+          <td>{{ customer.PhoneNumber }}</td>
+          <td>{{ customer.Location }}</td>
+          <td>{{ customer.NumberOfEmployees }}</td>
+          <td>{{ customer.DayofRain}}</td>
+          <td><a [routerLink]="['/edit', customer._id]" class="btn btn-primary">Edit</a></td>
+          <td><a (click) = "deleteCustomer(customer._id)" class="btn btn-danger">Delete</a>
       </tr>
   </tbody>
 </table>

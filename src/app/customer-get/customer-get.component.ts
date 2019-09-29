@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import Product from '../Product';
-import { ProductsService } from '../products.service';
+import Customer from '../Customer';
+import { CustomersService } from '../customers.service';
 import { ApixuService } from "../apixu.service";
 
 @Component({
-  selector: 'app-product-get',
-  templateUrl: './product-get.component.html',
-  styleUrls: ['./product-get.component.css']
+  selector: 'app-customer-get',
+  templateUrl: './customer-get.component.html',
+  styleUrls: ['./customer-get.component.css']
 })
-export class ProductGetComponent implements OnInit {
+export class CustomerGetComponent implements OnInit {
 
-  products: Product[];
-  constructor(private ps: ProductsService, private apixuService: ApixuService) { }
+  customers: Customer[];
+  constructor(private customerService: CustomersService, private apixuService: ApixuService) { }
   public weatherData: any;
   public barChartData: barChartData[] = [
     {
@@ -33,7 +33,7 @@ export class ProductGetComponent implements OnInit {
   ngOnInit() {
     this.getCustomers().then(
       () => {
-        console.log("Task Complete! = " + this.products);
+        console.log("Task Complete! = " + this.customers);
         this.setUpCustomers();
       },
       () => console.log("Task Errored!"),
@@ -41,14 +41,14 @@ export class ProductGetComponent implements OnInit {
   }
   getCustomers() {
   let promise = new Promise((resolve, reject) => {
-    this.ps.getProducts()
+    this.customerService.getCustomers()
       .toPromise()
       .then(
-        (data: Product[]) => { // Success
-         this.products = data;
-         this.products.sort((a,b) => b.NumberOfEmployees - a.NumberOfEmployees);
+        (data: Customer[]) => { // Success
+         this.customers = data;
+         this.customers.sort((a,b) => b.NumberOfEmployees - a.NumberOfEmployees);
 
-         console.log('this.product = ' + this.products);
+         console.log('this.customer = ' + this.customers);
           resolve();
         }
       );
@@ -57,23 +57,23 @@ export class ProductGetComponent implements OnInit {
 }
 //initialize the weather component into the customer list.
   setUpCustomers() {
-    for (let i = 0; i < this.products.length; i++){
+    for (let i = 0; i < this.customers.length; i++){
           //default the day of rain to be -1, meaning it's not going to rain.
-          this.products[i].DayofRain = -1;
+          this.customers[i].DayofRain = -1;
           this.apixuService
-            .getWeather(this.products[i].Location)//this.products.location
+            .getWeather(this.customers[i].Location)//this.customers.location
             .subscribe(data => {
             this.weatherData = data;
             //push the company name and number of employees into the dataset for the chart
             if (i < 4){
-              this.barChartData[0].data.push(this.products[i].NumberOfEmployees);
-              this.barChartLabels.push(this.products[i].CustomerName);
+              this.barChartData[0].data.push(this.customers[i].NumberOfEmployees);
+              this.barChartLabels.push(this.customers[i].CustomerName);
             }
             for ( let j = 0; j <= 5; j++){
               const day = this.weatherData.list[j];
               if (day.weather[0].main == 'Rain'){
                 //console.log('rain');
-                this.products[i].DayofRain = j + 1;
+                this.customers[i].DayofRain = j + 1;
                 //blue if raining
                 this.barChartData[0].backgroundColor[i] = '#36a2eb';
                 this.barChartData[0].hoverBackgroundColor[i] = '#74bff1';
@@ -90,11 +90,11 @@ export class ProductGetComponent implements OnInit {
         console.log(this.barChartData);
         this.isLoaded = true;
   }
-  // product-get.component.ts
+  // customer-get.component.ts
 
-  deleteProduct(id) {
-    this.ps.deleteProduct(id).subscribe(res => {
-      this.products.splice(id, 1);
+  deleteCustomer(id) {
+    this.customerService.deleteCustomer(id).subscribe(res => {
+      this.customers.splice(id, 1);
     });
   }
 }
