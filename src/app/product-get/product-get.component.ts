@@ -13,7 +13,13 @@ export class ProductGetComponent implements OnInit {
   products: Product[];
   constructor(private ps: ProductsService, private apixuService: ApixuService) { }
   public weatherData: any;
-  public barChartData: barChartData[] = [{data: [], backgroundColor:['','','','']}];//{data:[], label: ''}
+  public barChartData: barChartData[] = [
+    {
+      data: [],
+      backgroundColor:['','','',''],
+      hoverBackgroundColor:['','','',''],
+      label: 'Rain'
+    }];
   public barChartOptions = {
      scaleShowVerticalLines: false,
      responsive: true
@@ -21,16 +27,7 @@ export class ProductGetComponent implements OnInit {
   public barChartLabels: barChartLabels[] = [];
   public barChartType = 'bar';
   public barChartLegend = true;
-   // public barChartData =  [{
-   //      data: [45, 25, 20, 10],
-   //      backgroundColor: [
-   //          '#ff6384',//red
-   //          '#36a2eb',//blue
-   //          '#cc65fe',
-   //          '#ffce56'
-   //      ]
-   //  }];
-  // public barChartLabels = ['company A', 'Company B', 'Company C', 'Company D'];
+
 
   public isLoaded = false;
   ngOnInit() {
@@ -60,32 +57,19 @@ export class ProductGetComponent implements OnInit {
                 this.products[i].DayofRain = j + 1;
                 //blue if raining
                 this.barChartData[0].backgroundColor[i] = '#36a2eb';
+                this.barChartData[0].hoverBackgroundColor[i] = '#74bff1';
                 break; //the first date of rain should be recorded
               }
               else {
                 //red if no rain
                 this.barChartData[0].backgroundColor[i] = '#ff6384';
+                this.barChartData[0].hoverBackgroundColor[i] = '#ffb3c3';
               }
             }
           });
         }
         console.log(this.barChartData);
         this.isLoaded = true;
-        //here is for the top four bar chart:
-        // for (let i=0; i < 4;i++) {
-        //   this.barChartData[0].data.push(this.products[i].NumberOfEmployees);
-        //   console.log('dayofrain = ' + this.products[i].DayofRain);
-        //   if (this.products[i].DayofRain >= 0){
-        //     //blue if raining
-        //     this.barChartData[0].backgroundColor.push('#36a2eb');
-        //   }
-        //   else {
-        //     //red if no rain
-        //     this.barChartData[0].backgroundColor.push('#ff6384');
-        //   }
-        //   this.barChartLabels.push(this.products[i].CustomerName);
-        // }
-
     });
 
 
