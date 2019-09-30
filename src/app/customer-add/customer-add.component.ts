@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CustomerAddComponent implements OnInit {
 
   angForm: FormGroup;
-  constructor(private fb: FormBuilder, private ps: CustomersService, private router: Router) {
+  constructor(private fb: FormBuilder, private customerService: CustomersService, private router: Router) {
     this.createForm();
   }
 
@@ -25,11 +25,24 @@ export class CustomerAddComponent implements OnInit {
     });
   }
 
-  addCustomer(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees) {
-    this.ps.addCustomer(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees);
-    this.router.navigate(['']);
-  }
 
+  addCustomer(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees) {
+    this.timeout(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees)
+    .then((value) => {
+        this.router.navigate(['']);
+    });
+
+
+  }
+  timeout(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees){
+    return new Promise((resolve, reject) => {
+
+        this.customerService.addCustomer(CustomerName, PersonOfContact, PhoneNumber, Location, NumberOfEmployees);
+
+      setTimeout(resolve, 100, "done");
+
+    });
+  }
   ngOnInit() {
   }
 
