@@ -33,7 +33,7 @@ export class CustomerGetComponent implements OnInit {
   ngOnInit() {
     this.getCustomers().then(
       () => {
-        console.log("Task Complete! = " + this.customers);
+        //console.log("Task Complete! = " + this.customers);
         this.setUpCustomers();
       },
       () => console.log("Task Errored!"),
@@ -65,9 +65,12 @@ export class CustomerGetComponent implements OnInit {
             .subscribe(data => {
             this.weatherData = data;
             //push the company name and number of employees into the dataset for the chart
-            if (i < 4){
+            if (i < 5){
               this.barChartData[0].data.push(this.customers[i].NumberOfEmployees);
               this.barChartLabels.push(this.customers[i].CustomerName);
+              //red if no rain
+              this.barChartData[0].backgroundColor[i] = '#ff6384';
+              this.barChartData[0].hoverBackgroundColor[i] = '#ffb3c3';
             }
             for ( let j = 0; j <= 5; j++){
               const day = this.weatherData.list[j];
@@ -75,14 +78,15 @@ export class CustomerGetComponent implements OnInit {
                 //console.log('rain');
                 this.customers[i].DayofRain = j + 1;
                 //blue if raining
-                this.barChartData[0].backgroundColor[i] = '#36a2eb';
-                this.barChartData[0].hoverBackgroundColor[i] = '#74bff1';
+                if (i < 4) {
+                  this.barChartData[0].backgroundColor[i] = '#36a2eb';
+                  this.barChartData[0].hoverBackgroundColor[i] = '#74bff1';
+                }
+
                 break; //the first date of rain should be recorded
               }
               else {
-                //red if no rain
-                this.barChartData[0].backgroundColor[i] = '#ff6384';
-                this.barChartData[0].hoverBackgroundColor[i] = '#ffb3c3';
+
               }
             }
           });

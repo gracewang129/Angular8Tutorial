@@ -51,5 +51,5 @@ export class CustomerEditComponent implements OnInit {
       setTimeout(resolve, 100, "done");
 
     });
-}
+  }
 }
