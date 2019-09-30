@@ -13,7 +13,7 @@ export class CustomerGetComponent implements OnInit {
   customers: Customer[];
   constructor(private customerService: CustomersService, private apixuService: ApixuService) { }
   public weatherData: any;
-  public barChartData: barChartData[] = [
+  public barChartData = [
     {
       data: [],
       backgroundColor:['','','',''],
@@ -24,7 +24,7 @@ export class CustomerGetComponent implements OnInit {
      scaleShowVerticalLines: false,
      responsive: true
    };
-  public barChartLabels: barChartLabels[] = [];
+  public barChartLabels = [];
   public barChartType = 'bar';
   public barChartLegend = true;
 
